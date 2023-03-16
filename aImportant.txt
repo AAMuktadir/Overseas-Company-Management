@@ -1,0 +1,4 @@
+pocketbase admin credentials
+
+Username: muktadir@aamuktadir.xyz
+Password: muktadir1234
