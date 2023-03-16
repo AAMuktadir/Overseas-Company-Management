@@ -21,7 +21,7 @@ export default function Login() {
   const login = (data) => {
     setSubmitLoading(true);
     triggerLogin({ email: data.email, password: data.password }).catch((e) => {
-      // console.log(e);
+      console.log(data.email);
       // @ts-ignore
       notify("UserID or password is invalid", "error");
       setSubmitLoading(false);
