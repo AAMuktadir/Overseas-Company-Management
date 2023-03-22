@@ -21,13 +21,13 @@ export default function Login() {
   const login = (data) => {
     setSubmitLoading(true);
     triggerLogin({ email: data.email, password: data.password }).catch((e) => {
-      console.log(data.email);
+      console.log(data);
       // @ts-ignore
       notify("UserID or password is invalid", "error");
       setSubmitLoading(false);
     });
   };
-
+  
   if (user) {
     router.push("/");
   }
@@ -76,6 +76,7 @@ export default function Login() {
               color="black"
               className="animate-spin mt-5"
             />
+            
           ) : (
             <input
               type="submit"

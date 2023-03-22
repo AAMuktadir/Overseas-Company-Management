@@ -1,4 +1,16 @@
-pocketbase admin credentials
-
+{
+    pocketbase admin credentials
+}
+{
 Username: muktadir@aamuktadir.xyz
-Password: muktadir1234
+Password: cse470project
+}
+
+{
+    1. Username: muktadir@abcd.com
+       Password: 12344321
+
+    2. Username: example@aamuktadir.xyz
+       Password: asdfghjk
+
+}

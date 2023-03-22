@@ -44,7 +44,9 @@ export default function Layout({ children }) {
               height={80}
               alt={"sayemlogo"}
             />
-            <span className="text-xs font-light mt-3">CSE470: Overseas</span>
+            <span className="text-[18px] font-light mt-3">
+              CSE470: Overseas
+            </span>
           </Link>
           <ul className="mt-5 h-full px-4">
             <li className="border-b border-gray-300">
@@ -61,7 +63,27 @@ export default function Layout({ children }) {
                 href={"/agents"}
                 className="py-2 flex justify-between items-center"
               >
+                <span>Clients</span>
+                <GrFormNext />
+              </Link>
+            </li>
+
+            <li className="">
+              <Link
+                href={"/agents"}
+                className="py-2 flex justify-between items-center"
+              >
                 <span>Agents</span>
+                <GrFormNext />
+              </Link>
+            </li>
+
+            <li className="">
+              <Link
+                href={"/agents"}
+                className="py-2 flex justify-between items-center"
+              >
+                <span>Companies</span>
                 <GrFormNext />
               </Link>
             </li>
@@ -71,9 +93,15 @@ export default function Layout({ children }) {
               <Dropdown.Trigger>
                 <div className="px-5 w-full profile cursor-pointer flex justify-between items-center">
                   <div className="flex flex-row justify-start items-center gap-2">
-                    <Avatar
+                    {/* <Avatar
                       // @ts-ignore
-                      text={user ? user.name[0] ? user.name[0].toUpperCase() : "" : ""}
+                      text={
+                        user
+                          ? user.name[0]
+                            ? user.name[0].toUpperCase()
+                            : ""
+                          : ""
+                      }
                       src={
                         user
                           ? // @ts-ignore
@@ -86,12 +114,13 @@ export default function Layout({ children }) {
                       textColor="white"
                       size={"md"}
                       // squared
-                    />
-                    <span className="text-xs">
-                      {user
+                    /> */}
+                    <span className="text-[18px] text-center font-semibold text-green-600">
+                      {/* {user
                         ? // @ts-ignore
                           user.name
-                        : ""}
+                        : ""} */}
+                      Account
                     </span>
                   </div>
                   <GrFormNext />
@@ -103,25 +132,10 @@ export default function Layout({ children }) {
                 aria-label="Avatar Actions"
                 onAction={onSelectHandler}
               >
-                <Dropdown.Item textValue="Account" key="account">
-                  <span className="font-hind">Account</span>
+                <Dropdown.Item textValue="Profile" key="Profile">
+                  <span className="font-hind">Profile</span>
                 </Dropdown.Item>
-                <Dropdown.Item
-                  textValue="Tutorials"
-                  key="analytics"
-                  withDivider
-                >
-                  <span className="font-hind">Tutorials</span>
-                </Dropdown.Item>
-                <Dropdown.Item textValue="FAQ" key="faq">
-                  <span className="font-hind">FAQ</span>
-                </Dropdown.Item>
-                <Dropdown.Item
-                  textValue="Help & Feedback"
-                  key="help_and_feedback"
-                >
-                  <span className="font-hind">Help & Feedback</span>
-                </Dropdown.Item>
+
                 <Dropdown.Item
                   textValue="logout"
                   key="logout"
