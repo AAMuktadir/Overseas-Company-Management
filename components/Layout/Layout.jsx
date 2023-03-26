@@ -60,7 +60,7 @@ export default function Layout({ children }) {
             </li>
             <li className="">
               <Link
-                href={"/agents"}
+                href={"/clients"}
                 className="py-2 flex justify-between items-center"
               >
                 <span>Clients</span>
