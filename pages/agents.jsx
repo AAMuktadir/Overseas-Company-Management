@@ -6,34 +6,36 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useUser } from "../context/UserContextProvider";
 import Header from "../components/Layout/header";
-import pb from "../libs/pocketbase";
+import {getAgents,updateAgent} from "../libs/pocketbase";
+
 
 export default function Agents() {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
   const user = useUser();
 
-  const [agentData, setAgentData] = useState([]);
-  const agentlist = async () => {
-    try {
-      console.log("muktadir01");
-      const records = await pb.collection("agents").getFullList({
-        sort: "-created",
-      });
-      console.log(records);
+  const [selectedID,setSelectedID] = useState(null)
 
-      setAgentData(records);
-    } catch (e) {
-      console.log(e);
-    }
+  const [agentData, setAgentData] = useState(null);
+  const agentlist = async () => {
+    const result = await getAgents()
+    // console.log(result)
+      setAgentData(result);
+
   };
+
+  const updateMe = async(form)=>{
+    form.preventDefault()
+    const result = await updateAgent(selectedID.id,form.target.name.value)
+    agentlist();
+  }
 
   useEffect(() => {
     agentlist();
   }, []);
 
   console.log("muktadir");
-  console.log(agentData);
+  // console.log(agentData);
 
   if (user === false) {
     router.push("/login");
@@ -57,7 +59,21 @@ export default function Agents() {
         <div className="p-5">
           <h1>Here we can see all the agents</h1>
         </div>
-        <div className=""></div>
+        <div className="">
+          {
+            agentData && agentData.map(agent=>(
+              <div className="" key={agent.id}>
+                <button onClick={()=> setSelectedID(agent)}>{agent.name}</button>
+              </div>
+            ))
+          }
+          <div className={`${selectedID ? "block" : "hidden"}`}>
+            <form onSubmit={(e)=> updateMe(e)}>
+              <input name="name" type="text" defaultValue={selectedID ? selectedID.name : ""} placeholder="Name" />
+              <input type="submit" value={"update"} />
+            </form>
+          </div>
+        </div>
       </main>
     </>
   );
