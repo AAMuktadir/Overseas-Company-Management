@@ -7,10 +7,74 @@ Password: cse470project
 }
 
 {
+User credentials:
+
     1. Username: muktadir@abcd.com
        Password: 12344321
 
     2. Username: example@aamuktadir.xyz
        Password: asdfghjk
 
+}
+
+{
+    Requirements:
+
+    Sprint01:
+    Status: Complete 
+    [
+        Authentication
+        - User login
+        - Admin login [x]
+        - Admin role [x]
+        - Super admin can add new admin [x]
+    ]
+
+    Sprint02:
+    Status: Complete 
+    [
+        Dashboard
+        - Clients [x]
+        - Agents [x]
+        - Company [x]
+        - Overall monitoring [x]
+    ]
+
+    Sprint03:
+    Status: Processing 
+    [
+        Document management
+        - Passport data
+        - client, agent, company information 
+        - New client, agent, company addition
+        - Input and retrieval of passport/visa information 
+        - tracking of referred clients by each agent
+    ]
+
+    Sprint04: 
+    Status: managed by client database and dashboard
+    [
+        Approval
+        - Client approval
+        - Passport validity
+        - Police Clearance
+        - medical validity
+    ]
+
+    Sprint05: 
+    Status: Not started yet
+    [
+        Status
+        - Visa
+        - Client status with date
+        - Agent activity levels
+        - Medical records
+    ]
+
+    Sprint06: 
+    Status: Complete
+    [
+        - Secure database for client, company, agent, medical records, visa, passport details
+    ]
+ 
 }

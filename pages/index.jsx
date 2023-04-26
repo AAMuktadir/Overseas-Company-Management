@@ -30,7 +30,21 @@ export default function Home() {
           <div className=""></div>
         </Header>
         <div className="p-5">
-          <h1>Get Ready to do this</h1>
+          <h1 className="text-center text-[32px] font-medium">Home</h1>
+        </div>
+        <div className="grid grid-cols-3 gap-10 px-20 text-[24px]  text-center font-bold">
+          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+            <p className="">Client approval</p>
+          </div>
+          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+            <p className="">Passport validity</p>
+          </div>
+          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+            <p className="">Police Clearance</p>
+          </div>
+          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+            <p className="">Medical validity</p>
+          </div>
         </div>
       </main>
     </>
