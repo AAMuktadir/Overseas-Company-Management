@@ -69,18 +69,20 @@ export const createClient = async (
   firstname,
   lastname,
   age,
-  agent,
+  blood_group,
   address,
-  nid
+  nid,
+  agent
 ) => {
   try {
     const data = {
       firstname: firstname,
       lastname: lastname,
       age: age,
-      agent: agent,
+      blood_group: blood_group,
       address: address,
       nid: nid,
+      agent: agent,
     };
 
     const record = await pb.collection("clients").create(data);
@@ -118,7 +120,7 @@ export const updateClient = async (
   }
 };
 
-//Delete a single Agent
+//Delete a single Client
 export const deleteClient = async (id) => {
   try {
     await pb.collection("clients").delete(id);
@@ -131,7 +133,7 @@ export const deleteClient = async (id) => {
 };
 
 //fetching all Client
-export const getStudents = async () => {
+export const getClient = async () => {
   try {
     const records = await pb.collection("clients").getFullList({
       sort: "-created",

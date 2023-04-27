@@ -3,31 +3,49 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useUser } from "../../context/UserContextProvider";
-import Header from "../../components/Layout/header";
+import { useUser } from "../context/UserContextProvider";
+import Header from "../components/Layout/header";
 import { Table } from "@nextui-org/react";
-import { createClient, getAgents } from "../libs/pocketbase";
+import { getClient } from "../libs/pocketbase";
+
+//Modals
+import Edit_Client from "../components/Modals/Update_Modals/Edit_Client";
+import Create_Client from "../components/Modals/Create_Modals/Create_Client";
+import Delete_Client from "../components/Modals/Delete_Modals/Delete_Client";
 
 export default function Clients() {
   const [isLoading, setLoading] = useState(false);
-  //const [agentData, setAgentData] = useState(null);
-  // const [makeform, setform] = useState(false);
-  // const router = useRouter();
-  // const user = useUser();
+  //modal states
+  const [Clients, setClients] = useState(null);
+  const [AddClientVisible, setAddClientVisible] = useState(false);
+  const [EditClientVisible, setEditClientVisible] = useState(false);
+  const [DeleteClientVisible, setDeleteClientVisible] = useState(false);
+  const [SelectedClient, setSelecetedClient] = useState(null);
+  const router = useRouter();
+  const user = useUser();
 
-  // const createClient = () => {
-  //   setform(!makeform);
-  // };
+  //modal functions
+  //TODO - parameter teacher
+  const EditClientModalHandler = (client) => {
+    setSelecetedClient(client);
+    setEditClientVisible(true);
+  };
 
-  // const getAgentHandler = async () => {
-  //   const result = await getAgents();
-  //   // console.log(result)
-  //   setAgentData(result);
-  // };
+  //TODO - parameter teacher
+  const DeleteClientModalHandler = (client) => {
+    setSelecetedClient(client);
+    setDeleteClientVisible(true);
+  };
 
-  // useEffect(() => {
-  //   getAgentHandler();
-  // }, []);
+  const getClientHandler = async () => {
+    const result = await getClient();
+    // @ts-ignore
+    setClients(result);
+  };
+
+  useEffect(() => {
+    getClientHandler();
+  }, []);
 
   if (user === false) {
     router.push("/login");
@@ -68,103 +86,83 @@ export default function Clients() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header title={"Clients"}>
-          <div className=""></div>
+        <Header title={"Clients Information"}>
+          <button
+            className="bg-green-700 text-white px-2 py-2 rounded"
+            onClick={() => setAddClientVisible(true)}
+          >
+            ADD CLIENT
+          </button>
         </Header>
         <div className="p-5">
           <h1>Here we can see all the Clients</h1>
         </div>
-        <div className="">
-          <button onClick={createClient}>Add new Client</button>
+        <div className="p-5">
+          <Table
+            aria-label="Agents"
+            css={{
+              height: "auto",
+              minWidth: "100%",
+              dropShadow: "none",
+            }}
+          >
+            <Table.Header>
+              <Table.Column>NAME</Table.Column>
+              <Table.Column>AGE</Table.Column>
+              <Table.Column>BLOOD GROUP</Table.Column>
+              <Table.Column>NID</Table.Column>
+              <Table.Column>OPTION</Table.Column>
+            </Table.Header>
+            <Table.Body>
+              {Clients &&
+                Clients.map((client) => (
+                  <Table.Row key={client.id}>
+                    <Table.Cell>
+                      {client.firstname + " " + client.lastname}
+                    </Table.Cell>
+                    <Table.Cell>{client.age}</Table.Cell>
+                    <Table.Cell>{client.blood_group}</Table.Cell>
+                    <Table.Cell>{client.nid}</Table.Cell>
+                    <Table.Cell>
+                      <div className="flex gap-3">
+                        <button
+                          className="bg-blue-600 text-white px-2 py-1 rounded"
+                          onClick={() => EditClientModalHandler(client)}
+                        >
+                          EDIT
+                        </button>
+                        <button
+                          className="bg-red-600 text-white rounded px-2 py-1"
+                          onClick={() => DeleteClientModalHandler(client)}
+                        >
+                          DELETE
+                        </button>
+                      </div>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+            </Table.Body>
+          </Table>
         </div>
-        <p>Muktadir</p>
-        {makeform && (
-          <div className="">
-            <form onSubmit={(val) => createMe(val)}>
-              <div className="flex flex-col gap-5 px-4">
-                <div className="">
-                  <input
-                    className="border-4"
-                    name="firstname"
-                    type="text"
-                    defaultValue=""
-                    placeholder="First Name"
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="border-4"
-                    name="lastname"
-                    type="text"
-                    defaultValue=""
-                    placeholder="Last Name"
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="border-4"
-                    name="age"
-                    type="text"
-                    defaultValue=""
-                    placeholder="Your AGE"
-                  />
-                </div>
-
-                <div className="">
-                  <select name="agent" defaultValue={"Agents"}>
-                    <option value="Agents" disabled>
-                      Agents
-                    </option>
-                    {agentData
-                      ? agentData.map((agent) => (
-                          <option key={agent.id} value={agent.id}>
-                            {agent.name}
-                          </option>
-                        ))
-                      : null}
-                  </select>
-                  {/* <input
-                  className="border-4"
-                  name="agent"
-                  type="text"
-                  defaultValue=""
-                  placeholder="Agent Name"
-                /> */}
-                </div>
-
-                <div className="">
-                  <input
-                    className="border-4"
-                    name="address"
-                    type="text"
-                    defaultValue=""
-                    placeholder="Your Address"
-                  />
-                </div>
-
-                <div className="">
-                  <input
-                    className="border-4"
-                    name="nid"
-                    type="text"
-                    defaultValue=""
-                    placeholder="Your Nid Number"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    className="border-4 border-black-500 bg-green-500"
-                    type="submit"
-                    value={"create"}
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-        )}
+        <div className="">
+          <Create_Client
+            visible={AddClientVisible}
+            setVisible={setAddClientVisible}
+            reset={getClientHandler}
+          />
+          <Edit_Client
+            visible={EditClientVisible}
+            setVisible={setEditClientVisible}
+            client={SelectedClient}
+            reset={getClientHandler}
+          />
+          <Delete_Client
+            visible={DeleteClientVisible}
+            setVisible={setDeleteClientVisible}
+            client={SelectedClient}
+            reset={getClientHandler}
+          />
+        </div>
       </main>
     </>
   );
