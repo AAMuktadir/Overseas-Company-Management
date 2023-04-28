@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Loading from "../components/Loading/Loading";
 import { useUser } from "../context/UserContextProvider";
 import Header from "../components/Layout/header";
+import Link from "next/link";
 
 export default function Home() {
   const [isLoading, setLoading] = useState(false);
@@ -33,18 +34,26 @@ export default function Home() {
           <h1 className="text-center text-[32px] font-medium">Home</h1>
         </div>
         <div className="grid grid-cols-3 gap-10 px-20 text-[24px]  text-center font-bold">
-          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
-            <p className="">Client approval</p>
-          </div>
-          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
-            <p className="">Passport validity</p>
-          </div>
-          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
-            <p className="">Police Clearance</p>
-          </div>
-          <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
-            <p className="">Medical validity</p>
-          </div>
+          <Link rel="stylesheet" href="/ClientApproval">
+            <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+              <p className="">Client approval</p>
+            </div>
+          </Link>
+          <Link rel="stylesheet" href="/passportValidity">
+            <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+              <p className="">Passport validity</p>
+            </div>
+          </Link>
+          <Link rel="stylesheet" href="/policeClearance">
+            <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+              <p className="">Police Clearance</p>
+            </div>
+          </Link>
+          <Link rel="stylesheet" href="/passportValidity">
+            <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
+              <p className="">Medical validity</p>
+            </div>
+          </Link>
         </div>
       </main>
     </>

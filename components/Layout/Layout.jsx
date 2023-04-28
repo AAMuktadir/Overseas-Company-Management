@@ -7,7 +7,6 @@ import { Dropdown, Avatar, Tooltip, Divider } from "@nextui-org/react";
 import { useUser } from "../../context/UserContextProvider";
 import { GrFormNext } from "react-icons/gr";
 import Link from "next/link";
-import { pb } from "../../libs/pocketbase";
 
 export default function Layout({ children }) {
   const logout = useUserLogout();
@@ -80,10 +79,19 @@ export default function Layout({ children }) {
 
             <li className="">
               <Link
-                href={"/agents"}
+                href={"/companies"}
                 className="py-2 flex justify-between items-center"
               >
                 <span>Companies</span>
+                <GrFormNext />
+              </Link>
+            </li>
+            <li className="">
+              <Link
+                href={"/companyAssign"}
+                className="py-2 flex justify-between items-center"
+              >
+                <span>Companies Assign</span>
                 <GrFormNext />
               </Link>
             </li>

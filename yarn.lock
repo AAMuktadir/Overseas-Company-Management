@@ -2565,10 +2565,10 @@ pify@^2.3.0:
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
 
-pocketbase@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/pocketbase/-/pocketbase-0.13.1.tgz#b6297148999f67d9b4b5eb86ebb5013ef9c55640"
-  integrity sha512-3Wsj87VcmvqmziWXdXWKyCDKbA3rfMR5wlP64UJj+7KBss4ZEXv3Z1ZXhLe5OOiFwF+ErbcO9bzWBMrVLfsIpQ==
+pocketbase@^0.14.3:
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/pocketbase/-/pocketbase-0.14.3.tgz#0e906a0de303e1f3c18fd5eee05b72baef893064"
+  integrity sha512-F7UsNFH/W6/Z25nB+x6RF3oW0AuhcYroR9z8cFi+RH9rTTL8YZczly8PDjo8H9sZUrXXNmRtRpISGfSzrYl8dg==
 
 postcss-import@^14.1.0:
   version "14.1.0"
