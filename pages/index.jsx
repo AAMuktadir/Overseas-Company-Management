@@ -49,7 +49,7 @@ export default function Home() {
               <p className="">Police Clearance</p>
             </div>
           </Link>
-          <Link rel="stylesheet" href="/passportValidity">
+          <Link rel="stylesheet" href="/medicalValidity">
             <div className="w-[300px] h-[200px] bg-gray-200 pt-20">
               <p className="">Medical validity</p>
             </div>

@@ -90,7 +90,7 @@ export default function PoliceClearance() {
                       {getIsValid(client.medical_status) == "Approved" ? (
                         <div className="text-green-500">PASSED</div>
                       ) : (
-                        <div className="text-red-500">FAILED</div>
+                        <div className="text-red-500">NULL</div>
                       )}
                     </Table.Cell>
                     <Table.Cell>
